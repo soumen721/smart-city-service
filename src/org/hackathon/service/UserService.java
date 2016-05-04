@@ -4,5 +4,5 @@ import org.hackathon.domain.User;
 
 public interface UserService {
 	
-	public boolean isValidUser(User user);
+	public User getchUserDetails(User user);
 }

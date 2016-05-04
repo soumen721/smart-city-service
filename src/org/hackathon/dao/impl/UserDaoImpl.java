@@ -8,7 +8,6 @@ import java.util.List;
 import org.hackathon.dao.UserDao;
 import org.hackathon.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -25,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public boolean isValidUser(User user) {
+	public User getchUserDetails(User user) {
 		String sql = "SELECT * FROM user_dtls WHERE user_id = ? and password= ?  limit 1";
 
 		/*User fetchUser = (User) jdbcTemplate.queryForObject(sql, new Object[] { user.getUserId(), user.getPassword() },
@@ -36,13 +35,13 @@ public class UserDaoImpl implements UserDao {
 			public User mapRow(ResultSet rs, int rownumber) throws SQLException {
 				User e = new User();
 				e.setUserId(rs.getString("user_id"));
-				e.setName(rs.getString("user_firstname") + rs.getString("user_surname"));
+				e.setName(rs.getString("user_firstname") +" "+ rs.getString("user_surname"));
 				e.setPassword(rs.getString("password"));
 				return e;
 			}
 		});
 
-		return users != null && !users.isEmpty() ? true : false;
+		return users.get(0);
 
 	}
 

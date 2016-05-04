@@ -28,10 +28,10 @@ public class LoginController {
 	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("user") User user) {
 		ModelAndView model = null;
 		try {
-			boolean isValidUser = userService.isValidUser(user);
-			if (isValidUser) {
+			User loggedInUser = userService.getchUserDetails(user);
+			if (loggedInUser!=null) {
 				System.out.println("User Login Successful");
-				request.setAttribute("loggedInUser", user.getUserId());
+				request.setAttribute("user", loggedInUser);
 				model = new ModelAndView("welcome");
 			} else {
 				model = new ModelAndView("login/loginForm");

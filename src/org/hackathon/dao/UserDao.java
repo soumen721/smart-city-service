@@ -4,6 +4,6 @@ import org.hackathon.domain.User;
 
 public interface UserDao {
 
-	public boolean isValidUser(User user);
+	public User getchUserDetails(User user);
 	
 }

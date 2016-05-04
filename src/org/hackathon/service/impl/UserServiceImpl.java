@@ -13,9 +13,9 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 	
 	@Override
-	public boolean isValidUser(User user) {
+	public User getchUserDetails(User user) {
 		
-		return userDao.isValidUser(user);
+		return userDao.getchUserDetails(user);
 	}
 
 }
